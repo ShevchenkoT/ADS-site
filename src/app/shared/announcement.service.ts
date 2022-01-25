@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Announcement } from './interfaces';
 import { map } from 'rxjs/operators';
+import { Post } from './interfaces';
 
 
 @Injectable({
@@ -13,20 +13,20 @@ export class AnnouncementService {
 
   constructor(private http: HttpClient) { }
 
-  addAnnouncement(newAd: Announcement): Observable<any> {
-    return this.http.post(`${environment.FBUrl}/posts.json`, newAd)
+  addAnnouncement(newAd: Post): Observable<any> {
+    return this.http.post(`${environment.FBUrl}/Post.json`, newAd)
   }
 
-  updateAnnouncement(ad: Announcement) {
-    return this.http.patch(`${environment.FBUrl}/posts/${ad.id}.json`, ad);
+  updateAnnouncement(ad: Post) {
+    return this.http.patch(`${environment.FBUrl}/Post/${ad.id}.json`, ad);
   }
 
-  removeAnnouncement(id: string): any {
-    return this.http.delete<any>(`${environment.FBUrl}/posts/${id}.json`);
+  removeAnnouncement(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.FBUrl}/Post/${id}.json`);
   }
 
-  getAllAnnouncement(): Observable<Announcement[]> {
-    return this.http.get<Announcement[]>(`${environment.FBUrl}/posts.json`).pipe(
+  getAllAnnouncement(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${environment.FBUrl}/Post.json`).pipe(
       map((res: { [key: string]: any }) => {
         return Object.keys(res).map((key) => ({
           ...res[key],
@@ -36,7 +36,7 @@ export class AnnouncementService {
     );
   }
 
-  getAnnouncementById(id: string): Observable<Announcement> {
-    return this.http.get<Announcement>(`${environment.FBUrl}/posts/${id}.json`);
+  getAnnouncementById(id: string): Observable<Post> {
+    return this.http.get<Post>(`${environment.FBUrl}/Post/${id}.json`);
   }
 }

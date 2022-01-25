@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AnnouncementService } from './shared/announcement.service';
-import { Announcement } from './shared/interfaces';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,7 @@ import { Announcement } from './shared/interfaces';
 })
 export class AppComponent {
 
-  test: Announcement = {
+  test: any = {
     title: 'some Tittle',
     description: 'the very big text about announcement',
     dateAdded: new Date(),
@@ -18,33 +17,33 @@ export class AppComponent {
   constructor(private adService: AnnouncementService) { }
 
 
-  add() {
-    this.adService.addAnnouncement(this.test).subscribe((res) => {
-      console.log('test is done', res);
+  // add() {
+  //   this.adService.addAnnouncement(this.test).subscribe((res) => {
+  //     console.log('test is done', res);
 
-    })
-  }
-  getAll() {
-    this.adService.getAllAnnouncement().subscribe((res) => {
-      console.log('get', res);
+  //   })
+  // }
+  // getAll() {
+  //   this.adService.getAllAnnouncement().subscribe((res) => {
+  //     console.log('get', res);
 
-    })
-  }
-  remove() {
-    this.adService.removeAnnouncement('-MuCaLZMqh3tyt_xrmNv').subscribe(() => {
-      console.log('id done');
+  //   })
+  // }
+  // remove() {
+  //   this.adService.removeAnnouncement('-MuCaLZMqh3tyt_xrmNv').subscribe(() => {
+  //     console.log('id done');
 
-    }, (e: any) => {
-      console.log('this e', e);
+  //   }, (e: any) => {
+  //     console.log('this e', e);
 
-    })
-  }
+  //   })
+  // }
 
-  getOne() {
-    this.adService.getAnnouncementById('-MuCaEv7CYppZrdaZ_Dg').subscribe((res) => {
-      console.log("get One", res);
+  // getOne() {
+  //   this.adService.getAnnouncementById('-MuCaEv7CYppZrdaZ_Dg').subscribe((res) => {
+  //     console.log("get One", res);
 
-    })
-  }
+  //   })
+  // }
 }
 

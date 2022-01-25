@@ -1,0 +1,16 @@
+<div class="search">
+  <input type="text" placeholder="Find post">
+</div>
+
+<div class="posts">
+  <div class="posts__post" *ngFor="let post of posts; let idx = index">
+    <div [routerLink]="['/detail',post.id]" class="posts__detail">
+      <p>{{idx + 1}}</p>
+      <p>{{post.title}}</p>
+      <p>{{post.description}}</p>
+      <p>{{post.dateAdded}}</p>
+    </div>
+    <a [routerLink]="['/edit',post.id]">edit</a>
+    <button (click)="removePost(post.id)">remove</button>
+  </div>
+</div>

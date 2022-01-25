@@ -7,14 +7,11 @@ import { AnnouncementService } from '../shared/announcement.service';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit {
-  posts!: any
 
-  constructor(private adService: AnnouncementService) { }
+  constructor() { }
 
   ngOnInit() {
-    // this.adService.getAllAnnouncement().subscribe((res) => {
-    //   this.posts = res;
-    // })
+
   }
 
 }

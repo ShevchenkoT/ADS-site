@@ -1,0 +1,23 @@
+<h2>Create Post</h2>
+
+<form [formGroup]="form" (submit)="submit()">
+  <div class="form-control">
+    <label for="title">Title
+      <input name="title" formControlName="title" type="text" placeholder="Enter title">
+    </label>
+    <div class="error">
+      <p></p>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <label for="description">Description
+      <input name="description" formControlName="description" type="text" placeholder="Enter description">
+    </label>
+    <div class="error">
+      <p></p>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]=disableSubmitBtn> Create </button>
+</form>
