@@ -12,9 +12,9 @@ export class MainPageComponent implements OnInit {
   constructor(private adService: AnnouncementService) { }
 
   ngOnInit() {
-    this.adService.getAllAnnouncement().subscribe((res) => {
-      this.posts = res;
-    })
+    // this.adService.getAllAnnouncement().subscribe((res) => {
+    //   this.posts = res;
+    // })
   }
 
 }
