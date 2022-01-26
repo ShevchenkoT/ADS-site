@@ -8,7 +8,8 @@ import { Post } from '../shared/interfaces';
   styleUrls: ['./posts-page.component.scss']
 })
 export class PostsPageComponent implements OnInit {
-  posts!: Post[]
+  posts!: Post[];
+  search: string = '';
 
   constructor(private adService: AnnouncementService) { }
 
@@ -22,7 +23,6 @@ export class PostsPageComponent implements OnInit {
     if (!removeId) return;
     this.adService.removeAnnouncement(removeId).subscribe(() => {
       this.posts = this.posts.filter(({ id }) => id !== removeId);
-
     })
   }
 }

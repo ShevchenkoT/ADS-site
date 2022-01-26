@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { Post } from './interfaces';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +27,7 @@ export class AnnouncementService {
   getAllAnnouncement(): Observable<Post[]> {
     return this.http.get<Post[]>(`${environment.FBUrl}/Post.json`).pipe(
       map((res: { [key: string]: any }) => {
+        if (!res) return res;
         return Object.keys(res).map((key) => ({
           ...res[key],
           id: key,

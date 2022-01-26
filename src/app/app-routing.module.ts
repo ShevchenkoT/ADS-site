@@ -14,7 +14,6 @@ const routes: Routes = [
       { path: 'create', component: CreatePageComponent },
       { path: 'detail/:id', component: DetailPageComponent },
       { path: 'edit/:id', component: EditPageComponent },
-      // { path: 'wish-list', component: WishListComponent },
     ]
   },
 ]

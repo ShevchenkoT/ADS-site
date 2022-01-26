@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 /*Zero style*/
 * {
   padding: 0;
@@ -93,89 +95,62 @@ a {
   text-decoration: none
 }
 
-// .form-control {
-//   display: block;
-//   color: #888;
-//   margin-bottom: .8rem;
 
-//   &.invalid {
-//     color: var(--primary-color);
+html,
+body {
+  font-family: 'Poppins', sans-serif;
+}
 
-//     input {
-//       border-color: var(--primary-color);
-//     }
-//   }
+form {
+  max-width: 600px;
+  margin: 0 auto;
 
-//   .validation {
-//     color: var(--primary-color);
-//   }
-// }
+  .form-control {
+    display: block;
+    color: #888;
+    margin-bottom: 0.8rem;
 
-// input[type='text'],
-// input[type='email'],
-// input[type='password'],
-// input[type='date'],
-// select,
-// textarea {
-//   display: block;
-//   width: 100%;
-//   padding: 0.4rem;
-//   font-size: 1.2rem;
-//   border: 1px solid #ccc;
-// }
+    input,
+    textarea {
+      display: block;
+      width: 100%;
+      padding: 0.4rem;
+      font-size: 1.2rem;
+      border: 1px solid #ccc;
+      resize: none;
+    }
 
-// input[type='submit'],
-// button {
-//   font: inherit;
-// }
+    textarea {
+      height: 200px;
+    }
 
-// table {
-//   width: 100%;
-//   border-collapse: collapse;
-// }
+    .error {
+      color: rgb(218, 73, 73);
+    }
+  }
+}
 
-// table th,
-// table td {
-//   padding: 1rem;
-//   text-align: left;
-// }
+.btn {
+  background-color: rgba($color: #000000, $alpha: 0.0);
+  color: #000;
+  font-size: 18px;
+  border: 2px#000 solid;
+  width: 130px;
+  height: 40px;
+  transition: all .3s ease;
+  user-select: none;
 
-// table th {
-//   background: var(--light-color);
-// }
+  &:hover {
+    background-color: #e6e6e6;
+  }
 
-// .navbar {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   padding: 0.7rem 2rem;
-//   z-index: 1;
-//   width: 100%;
-//   opacity: 0.9;
-//   margin-bottom: 1rem;
+  &:active {
+    background-color: #cacaca;
+  }
 
-//   &.main {
-//     justify-content: center;
-//     border-bottom: 1px solid var(--dark-color);
-//   }
-
-//   ul {
-//     display: flex;
-//   }
-
-//   li.active a {
-//     color: var(--dark-color);
-//     font-weight: bold;
-//     cursor: default;
-//   }
-
-//   a {
-//     color: #fff;
-//     padding: 0.45rem;
-//     margin: 0 0.25rem;
-
-//     &:hover {
-//       color: var(--light-color);
-//     }
-//   }
-// }
+  &:disabled {
+    color: rgb(54, 54, 54);
+    background-color: rgb(63, 63, 63);
+    cursor: not-allowed;
+  }
+}

@@ -1,3 +1,5 @@
-<p>
-  detail-page works!
-</p>
+<div class="post" *ngIf="post">
+  <p>{{post.title}}</p>
+  <p>{{post.description}}</p>
+  <p>{{post.dateAdded | date:'medium'}}</p>
+</div>

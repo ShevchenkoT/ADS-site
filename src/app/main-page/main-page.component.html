@@ -1,25 +1,6 @@
-<!-- <div *ngIf="posts" class="posts">
-  <div *ngFor="let post of posts">
-    <div class="post">
-      <div class="header">
-        <h1>{{post.title}}</h1>
-
-        <button routerLink='/' class="btn btn-link">На головну</button>
-      </div>
-
-      <div class="info">
-        <strong>{{post.author}}</strong>
-        <small>{{post.date |date:'medium'}}</small>
-      </div>
-
-
-    </div>
-  </div>
-</div> -->
-
 <div class="nav-bar">
   <div class="nav-bar__tittle">
-    <h1>Board</h1>
+    <h1> <a [routerLink]="['/home']">Board</a> </h1>
   </div>
   <div class="nav-bar__links">
     <a [routerLink]="['/home']" routerLinkActive="active-link">Home</a>

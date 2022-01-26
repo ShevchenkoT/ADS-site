@@ -5,19 +5,30 @@
     <label for="title">Title
       <input name="title" formControlName="title" type="text" placeholder="Enter title">
     </label>
-    <div class="error">
-      <p></p>
+    <div class="error" *ngIf="form.get('title')?.invalid && form.get('title')?.touched">
+      <small *ngIf="form.get('title')?.errors?.['required']">
+        Title field cannot be empty
+      </small>
+      <small *ngIf="form.get('title')?.errors?.['minlength']">
+        Min 3 symbols
+      </small>
     </div>
   </div>
 
   <div class="form-control">
     <label for="description">Description
-      <input name="description" formControlName="description" type="text" placeholder="Enter description">
+      <textarea name="description" formControlName="description" type="text" placeholder="Enter description"
+        class="description-input"></textarea>
     </label>
-    <div class="error">
-      <p></p>
+    <div class="error" *ngIf="form.get('description')?.invalid && form.get('description')?.touched">
+      <small *ngIf="form.get('description')?.errors?.['required']">
+        Description field cannot be empty
+      </small>
+      <small *ngIf="form.get('description')?.errors?.['minlength']">
+        Min 20 symbols
+      </small>
     </div>
   </div>
 
-  <button type="submit" [disabled]=disableSubmitBtn> Create </button>
+  <button class="btn" type="submit" [disabled]="disableSubmitBtn || form.invalid"> Create </button>
 </form>

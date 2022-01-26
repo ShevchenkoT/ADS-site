@@ -12,27 +12,27 @@ export class CreatePageComponent implements OnInit {
   disableSubmitBtn = false;
   form!: FormGroup
 
-  constructor(private adService: AnnouncementService) { }
+  constructor(
+    private adService: AnnouncementService,
+  ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
       title: new FormControl(null, [Validators.required, Validators.minLength(3)]),
-      description: new FormControl(null, [Validators.required, Validators.minLength(10)]),
+      description: new FormControl(null, [Validators.required, Validators.minLength(20)]),
     })
   }
 
   submit() {
-
+    if (this.form.invalid) return;
     this.disableSubmitBtn = true;
     const newPost: Post = {
       ...this.form.value,
       dateAdded: new Date(),
     }
     this.adService.addAnnouncement(newPost)
-      .subscribe(null, (e) => console.log(e), () => this.disableSubmitBtn = false)
+      .subscribe(null, (e) => console.log(e), () => this.disableSubmitBtn = false);
 
-
-    this.form.reset()
+    this.form.reset();
   }
-
 }
