@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { AnnouncementService } from '../shared/announcement.service';
 import { Post } from '../shared/interfaces';
 
@@ -10,7 +10,9 @@ import { Post } from '../shared/interfaces';
   styleUrls: ['./detail-page.component.scss']
 })
 export class DetailPageComponent implements OnInit {
-  post!: Post
+  post!: Post;
+  similarPosts: Post[] | any = [];
+  currentId!: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,10 +23,43 @@ export class DetailPageComponent implements OnInit {
     this.route.params.
       pipe(
         switchMap((params: Params) => {
+          this.currentId = params['id'];
           return this.adService.getAnnouncementById(params['id']);
         })
-      ).subscribe((post: Post) => {
-        this.post = post;
-      });
+      ).pipe(
+        switchMap((post) => {
+          this.post = post;
+          return this.adService.getAllAnnouncement()
+        })).subscribe((posts) => {
+          this.similarPosts = this.findThreeSimilarPosts(posts);
+        })
+    // this.route.params.
+    //   pipe(
+    //     switchMap((params: Params) => {
+    //       this.currentId = params['id'];
+    //       return this.adService.getAnnouncementById(params['id']);
+    //     })
+    //   ).subscribe((post: Post) => {
+    //     this.post = post;
+    //   });
+
+    // this.adService.getAllAnnouncement().subscribe((posts) => {
+
+    //   this.similarPosts = this.findThreeSimilarPosts(posts);
+    // })
+
+
   }
+
+  findThreeSimilarPosts(posts: Post[]) {
+    const mainWords = this.post.description.split(' ').filter((w) => w.length > 3);
+
+    posts = posts.filter(({ description, id }) => {
+      if (id === this.currentId) return false;
+      const words = description.split(' ').filter((w) => mainWords.includes(w))
+      return !!words.length
+    })
+    return posts.slice(0, 3);
+  }
+
 }

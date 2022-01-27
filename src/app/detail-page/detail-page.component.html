@@ -1,5 +1,21 @@
 <div class="post" *ngIf="post">
-  <p>{{post.title}}</p>
-  <p>{{post.description}}</p>
-  <p>{{post.dateAdded | date:'medium'}}</p>
+  <div class="post__about">
+    <h3>{{post.title}}</h3>
+    <p>{{post.dateAdded | date:'medium'}}</p>
+  </div>
+  <div class="post__description">
+    <p>{{post.description}}</p>
+  </div>
+</div>
+
+<div class="similar-posts" *ngIf="similarPosts.length">
+  <div class="similar-posts__post" *ngFor="let post of similarPosts">
+    <div class="similar-posts__about">
+      <h3>{{post.title}}</h3>
+      <p>{{post.dateAdded | date:'medium'}}</p>
+    </div>
+    <div class="similar-posts__description">
+      <p>{{post.description}}</p>
+    </div>
+  </div>
 </div>
