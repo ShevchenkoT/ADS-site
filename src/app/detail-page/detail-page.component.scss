@@ -43,7 +43,7 @@
   &::before {
     content: 'Similar announcement';
     display: inline-block;
-    transform: translateY(-60px);
+    transform: translateY(-4.1rem);
     background-color: #f0f0f0;
     font-size: 1.2rem;
     padding: 0 4px;
@@ -85,7 +85,6 @@
     &:hover {
       background-color: rgb(228, 228, 228);
     }
-
 
     p {
       letter-spacing: 1.5px;

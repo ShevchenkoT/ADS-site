@@ -1,16 +1,20 @@
-<div class="search">
-  <input type="text" placeholder="Find post" [(ngModel)]="search">
-</div>
+<div class="content">
 
-<div class="posts" *ngIf="posts">
-  <div class="posts__post" *ngFor="let post of posts | postFilter: search; let idx = index">
-    <div [routerLink]="['/detail',post.id]" class="posts__detail">
-      <p>{{idx + 1}}</p>
-      <p class="posts__title">{{post.title}}</p>
-      <p class="posts__description">{{post.description}}</p>
-      <p>{{post.dateAdded | date:'medium'}}</p>
-    </div>
-    <a class="min-btn edit" [routerLink]="['/edit',post.id]">edit</a>
-    <a class="min-btn remove" (click)="removePost(post.id)">remove</a>
+  <div class="search">
+    <input type="text" placeholder="Find post" [(ngModel)]="search">
   </div>
+
+  <div class="posts" *ngIf="posts">
+    <div class="posts__post" *ngFor="let post of posts | postFilter: search; let idx = index">
+      <div [routerLink]="['/detail',post.id]" class="posts__detail">
+        <p>{{idx + 1}}</p>
+        <p class="posts__title">{{post.title}}</p>
+        <p class="posts__description">{{post.description}}</p>
+        <p>{{post.dateAdded | date:'medium'}}</p>
+      </div>
+      <a class="min-btn edit" [routerLink]="['/edit',post.id]">edit</a>
+      <a class="min-btn remove" (click)="removePost(post.id)">remove</a>
+    </div>
+  </div>
+
 </div>

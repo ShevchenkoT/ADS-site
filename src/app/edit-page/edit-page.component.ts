@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 import { AnnouncementService } from '../shared/announcement.service';
 import { Post } from '../shared/interfaces';
 
@@ -10,11 +10,13 @@ import { Post } from '../shared/interfaces';
   templateUrl: './edit-page.component.html',
   styleUrls: ['./edit-page.component.scss']
 })
-export class EditPageComponent implements OnInit {
+export class EditPageComponent implements OnInit, OnInit {
   disableSubmitBtn = false;
   form!: FormGroup;
   post!: Post;
   id!: string;
+  gSub!: Subscription;
+  uSub!: Subscription;
 
   constructor(
     private adService: AnnouncementService,
@@ -22,8 +24,8 @@ export class EditPageComponent implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit() {
-    this.route.params.
+  ngOnInit(): void {
+    this.gSub = this.route.params.
       pipe(
         switchMap((params: Params) => {
           this.id = params['id'];
@@ -38,7 +40,7 @@ export class EditPageComponent implements OnInit {
       });
   }
 
-  submit() {
+  submit(): void {
     if (this.form.invalid) return;
     this.disableSubmitBtn = true;
     const newPost: Post = {
@@ -46,8 +48,13 @@ export class EditPageComponent implements OnInit {
       dateAdded: new Date(),
       id: this.id,
     }
-    this.adService.updateAnnouncement(newPost).subscribe((res) => {
-      this.router.navigate(['/'])
+    this.uSub = this.adService.updateAnnouncement(newPost).subscribe((res) => {
+      this.router.navigate(['/']);
     })
+  }
+
+  ngOnDestroy(): void {
+    this.uSub.unsubscribe();
+    this.gSub.unsubscribe();
   }
 }

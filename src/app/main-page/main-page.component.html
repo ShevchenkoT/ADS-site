@@ -1,14 +1,14 @@
-<div class="nav-bar">
-  <div class="nav-bar__tittle">
-    <h1> <a [routerLink]="['/home']">Board</a> </h1>
-  </div>
-  <div class="nav-bar__links">
-    <a [routerLink]="['/home']" routerLinkActive="active-link">Home</a>
-    <a [routerLink]="['/create']" routerLinkActive="active-link">Create</a>
-  </div>
-</div>
-
 <div class="main-page">
+  <div class="nav-bar">
+    <div class="nav-bar__tittle">
+      <h1> <a [routerLink]="['/home']">Board</a> </h1>
+    </div>
+    <div class="nav-bar__links">
+      <a [routerLink]="['/home']" routerLinkActive="active-link">Home</a>
+      <a [routerLink]="['/create']" routerLinkActive="active-link">Create</a>
+    </div>
+  </div>
+
   <div class="main-page__content">
     <router-outlet></router-outlet>
   </div>

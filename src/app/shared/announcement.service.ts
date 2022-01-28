@@ -13,7 +13,7 @@ export class AnnouncementService {
   constructor(private http: HttpClient) { }
 
   addAnnouncement(newAd: Post): Observable<any> {
-    return this.http.post(`${environment.FBUrl}/Post.json`, newAd)
+    return this.http.post(`${environment.FBUrl}/Post.json`, newAd);
   }
 
   updateAnnouncement(ad: Post) {
