@@ -54,7 +54,12 @@ export class EditPageComponent implements OnInit, OnInit {
   }
 
   ngOnDestroy(): void {
-    this.uSub.unsubscribe();
-    this.gSub.unsubscribe();
+    if (this.uSub) {
+      this.uSub.unsubscribe();
+    }
+
+    if (this.gSub) {
+      this.gSub.unsubscribe();
+    }
   }
 }

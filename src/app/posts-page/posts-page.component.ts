@@ -30,7 +30,11 @@ export class PostsPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.rSub.unsubscribe();
-    this.gSub.unsubscribe();
+    if (this.rSub) {
+      this.rSub.unsubscribe();
+    }
+    if (this.gSub) {
+      this.gSub.unsubscribe();
+    }
   }
 }
