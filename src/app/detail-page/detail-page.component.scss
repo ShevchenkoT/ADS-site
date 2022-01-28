@@ -9,12 +9,13 @@
     margin-bottom: 3rem;
 
     &>h3 {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
 
     &>p {
       font-size: 1.2rem;
       text-align: end;
+      white-space: nowrap;
     }
   }
 
@@ -32,29 +33,59 @@
 
 
 .similar-posts {
-  border: 1px red solid;
-  margin: 2rem auto ;
+  border: 2px rgb(73, 73, 73) solid;
+  margin: 2rem auto;
   max-width: 500px;
-  padding: 2rem;
+  padding: 3rem 3rem 2rem;
+  border-radius: 10px;
+
+
+  &::before {
+    content: 'Similar announcement';
+    display: inline-block;
+    transform: translateY(-60px);
+    background-color: #f0f0f0;
+    font-size: 1.2rem;
+    padding: 0 4px;
+  }
+
+  &__detail {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
   &__about {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
     &>h3 {
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
 
     &>p {
       font-size: .9rem;
       text-align: end;
+      white-space: nowrap;
     }
   }
 
   &__description {
-    background-color: white;
+    position: relative;
+    background-color: #ffffff;
     padding: 1.2rem;
     border-radius: 10px;
     margin: 1rem 0 2rem;
+
+    transition: background .3s ease-in;
+
+    &:hover {
+      background-color: rgb(228, 228, 228);
+    }
+
 
     p {
       letter-spacing: 1.5px;

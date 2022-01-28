@@ -11,7 +11,7 @@ import { Post } from '../shared/interfaces';
 })
 export class DetailPageComponent implements OnInit {
   post!: Post;
-  similarPosts: Post[] | any = [];
+  similarPosts: Post[] = [];
   currentId!: string;
 
   constructor(
@@ -29,35 +29,25 @@ export class DetailPageComponent implements OnInit {
       ).pipe(
         switchMap((post) => {
           this.post = post;
-          return this.adService.getAllAnnouncement()
+          return this.adService.getAllAnnouncement();
         })).subscribe((posts) => {
           this.similarPosts = this.findThreeSimilarPosts(posts);
         })
-    // this.route.params.
-    //   pipe(
-    //     switchMap((params: Params) => {
-    //       this.currentId = params['id'];
-    //       return this.adService.getAnnouncementById(params['id']);
-    //     })
-    //   ).subscribe((post: Post) => {
-    //     this.post = post;
-    //   });
-
-    // this.adService.getAllAnnouncement().subscribe((posts) => {
-
-    //   this.similarPosts = this.findThreeSimilarPosts(posts);
-    // })
-
-
   }
 
   findThreeSimilarPosts(posts: Post[]) {
-    const mainWords = this.post.description.split(' ').filter((w) => w.length > 3);
+    if (!posts) return [];
+    const mainPostDescription = this.post.description.split(' ').filter((w) => w.length > 3).map((w) => w.toLowerCase());
+    const mainPostTitle = this.post.title.split(' ').filter((w) => w.length > 3).map((w) => w.toLowerCase())
 
-    posts = posts.filter(({ description, id }) => {
+    posts = posts.filter(({ description, id, title }) => {
       if (id === this.currentId) return false;
-      const words = description.split(' ').filter((w) => mainWords.includes(w))
-      return !!words.length
+
+      const titleWords = title.split(' ').filter((w) => mainPostTitle.includes(w.toLowerCase()))
+      if (!titleWords.length) return false;
+
+      const descriptionWords = description.split(' ').filter((w) => mainPostDescription.includes(w.toLowerCase()))
+      return !!descriptionWords.length
     })
     return posts.slice(0, 3);
   }

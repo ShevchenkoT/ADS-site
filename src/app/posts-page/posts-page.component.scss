@@ -24,6 +24,7 @@
     justify-content: flex-start;
     overflow: hidden;
     transition: all .5s ease;
+    min-height: 25px;
     cursor: pointer;
 
     &:hover {
@@ -46,10 +47,11 @@
   }
 
   &__title {
-    width: 15%;
+    width: 20%;
     overflow: hidden;
     margin: 0 .5rem 0 1rem;
     white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &__description {
@@ -57,6 +59,7 @@
     overflow: hidden;
     margin-right: 1rem;
     white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }
 
